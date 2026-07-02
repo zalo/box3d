@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Box3D · WASM instancing demo</title>
+<style>
+	:root { color-scheme: dark; }
+	* { margin: 0; box-sizing: border-box; }
+	html, body { height: 100%; overflow: hidden; background: #0b0e14; }
+	#app { position: fixed; inset: 0; }
+	#hud {
+		position: fixed; top: 14px; left: 14px; z-index: 10;
+		font: 13px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace;
+		color: #cdd6f4; background: rgba(17,20,28,.72);
+		border: 1px solid rgba(205,214,244,.12); border-radius: 10px;
+		padding: 12px 14px; backdrop-filter: blur(8px); pointer-events: none;
+		max-width: 320px;
+	}
+	#hud h1 { font-size: 13px; letter-spacing: .04em; color: #89b4fa; margin-bottom: 6px; }
+	#hud .row { display: flex; justify-content: space-between; gap: 18px; }
+	#hud .k { color: #7f849c; }
+	#hud .hint { margin-top: 8px; color: #9399b2; font-size: 11px; }
+	#overlay {
+		position: fixed; inset: 0; z-index: 20; display: grid; place-items: center;
+		background: #0b0e14; color: #cdd6f4; font: 15px ui-monospace, monospace;
+		transition: opacity .4s ease; }
+	#overlay.hidden { opacity: 0; pointer-events: none; }
+</style>
+</head>
+<body>
+	<div id="app"></div>
+	<div id="hud">
+		<h1>BOX3D → WASM</h1>
+		<div class="row"><span class="k">bodies</span><span id="s-bodies">–</span></div>
+		<div class="row"><span class="k">awake</span><span id="s-awake">–</span></div>
+		<div class="row"><span class="k">step</span><span id="s-step">–</span></div>
+		<div class="row"><span class="k">fps</span><span id="s-fps">–</span></div>
+		<div class="hint">drag to orbit · scroll to zoom · click the pile to detonate · R to reset</div>
+	</div>
+	<div id="overlay">compiling physics…</div>
+
+	<script type="importmap">
+	{
+		"imports": {
+			"three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+			"three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+		}
+	}
+	</script>
+	<script type="module" src="./main.js"></script>
+</body>
+</html>

@@ -1,0 +1,4 @@
+# Emscripten build output
+build/
+box3d.js
+box3d.wasm
